@@ -40,6 +40,7 @@ public class NReynasBinario {
     			if( qi == qj)
     			{
     				contador++;
+    				break;
     			}
     				
     			//System.out.println("Evaluando: "+i+" - "+j+" = "+qi+" - "+qj);
@@ -170,7 +171,6 @@ public class NReynasBinario {
         double arreglo [] = new double[generaciones];
         int t = 0, mayor = 0;
         
-        imprimir(individuos);
         
         do
         {
@@ -199,14 +199,12 @@ public class NReynasBinario {
     		}
     		//System.out.println("El individuo seleccionado tiene: ");
     		//imprimir(numeroBinario);
-    		tablaDecodificacion[i] = (double) evaluarFuncion(numeroBinario, lsup);
-                
-                if(tablaDecodificacion[i] < min)
-                {
-                    min = tablaDecodificacion[i];
-                    ind = i;
-                   
-                }
+    		tablaDecodificacion[i] = (double) evaluarFuncion(numeroBinario, lsup);                
+            if(tablaDecodificacion[i] < min)
+            {
+                min = tablaDecodificacion[i];
+                ind = i;
+            }
 			tablaDecodificacion[i] = 50000.0 - tablaDecodificacion[i];
     		F += tablaDecodificacion[i];
     		
@@ -320,7 +318,7 @@ public class NReynasBinario {
  * 
  ******************************************************************************************/
  
-       // individuoSeleccionadoCopia[ind] = individuos[ind].clone();
+        individuoSeleccionadoCopia[ind] = individuos[ind].clone();
         
         /****************/
         
