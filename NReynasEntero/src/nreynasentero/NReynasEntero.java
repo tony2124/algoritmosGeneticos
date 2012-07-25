@@ -2,11 +2,11 @@
 * @(#)NReynasEntero.java
 *
 *
-* @author FRANCISCO JAVIER CALDERÓN CHÁVEZ.
-* ALFONSO CALDERÓN CHÁVEZ.
+* @author FRANCISCO JAVIER CALDERON CHAVEZ.
+* ALFONSO CALDERON CHAVEZ.
 *
-* @Instituto: INSTITUTO TECNOLÓGICO SUPERIOR DE APATZINGÁN.
-* UNIVERSIDAD NACIONAL AUTONOMA DE MÉXICO.
+* @Instituto: INSTITUTO TECNOLOGICO SUPERIOR DE APATZINGAN.
+* UNIVERSIDAD NACIONAL AUTONOMA DE MEXICO.
 * INSTITUTO DE INVESTIGACION EN MATEMATICAS APLICADAS Y EN SISTEMAS.
 */
 package nreynasentero;
@@ -98,7 +98,7 @@ public class NReynasEntero {
             System.out.println();
             for(int j = 0; j < a.length; j++)
                 if(a[j] != i)
-                    System.out.print("◙");
+                    System.out.print("O");
                 else
                     System.out.print("X");
         }
@@ -215,18 +215,19 @@ public class NReynasEntero {
     *
     ******************************************************************************************/
         double numeroAleatorio;
+        
         int [][] individuoSeleccionado = new int[numeroIndividuos][tamIndividuo], individuoSeleccionadoCopia = new int[numeroIndividuos][tamIndividuo];
-        int cont = 0;
-        for(int i = 0; i < numeroIndividuos; i++)
+       
+        for(int i = 0; i < numeroIndividuos;)
         {
             numeroAleatorio = Math.random();
             for(int j = 0; j < numeroIndividuos; j++)
             {
                 if(tablaDecodificacion[j] > numeroAleatorio)
                 {
-                    individuoSeleccionado[cont] = individuos[j].clone();
-                    individuoSeleccionadoCopia[cont] = individuos[j].clone();
-                    cont++;
+                    individuoSeleccionado[i] = individuos[j].clone();
+                    individuoSeleccionadoCopia[i] = individuos[j].clone();
+                    i++;
                     break;
                 }
             }
@@ -243,7 +244,7 @@ public class NReynasEntero {
     
      //Aplicando la cruza a los individuos seleccionados (1 x 2 y 3 x 4)
      int [] indices = new int[numeroIndividuos];
-     cont = 0;
+     int cont = 0;
      for(int i = 0; i < numeroIndividuos; i++)
      {
         numeroAleatorio = Math.random();
@@ -269,8 +270,7 @@ public class NReynasEntero {
             individuoSeleccionadoCopia[indices[j]][pass] = individuoSeleccionado[indices[j+1]][pass];
             individuoSeleccionadoCopia[indices[j+1]][pass] = individuoSeleccionado[indices[j]][pass];
         }
-        
-        
+          
         //MAPEO H1 
         for(int pass = 0; pass < num; pass++)
         {
@@ -386,11 +386,11 @@ public class NReynasEntero {
         if(t == generaciones)
             imprimirSolucion(individuoSeleccionadoCopia[ind]);
         }while(t < generaciones);
-        
+       /* 
         ventanaGrafica miventana = new ventanaGrafica(arreglo);
         miventana.setSize(500,500);
         miventana.show();
- 
+ */
      }
     
 }
