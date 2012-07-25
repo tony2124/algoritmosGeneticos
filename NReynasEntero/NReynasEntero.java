@@ -1,17 +1,18 @@
 /**
- * @(#)NReynasEntero.java
- *
- *
- * @author 		FRANCISCO JAVIER CALDER”N CH¡VEZ.
- *				ALFONSO CALDER”N CH¡VEZ.
- *
- * @Instituto: 	INSTITUTO TECNOL”GICO SUPERIOR DE APATZING¡N.
- *				UNIVERSIDAD NACIONAL AUTONOMA DE M…XICO.
- *				INSTITUTO DE INVESTIGACION EN MATEMATICAS APLICADAS Y EN SISTEMAS.
- */
+* @(#)NReynasEntero.java
+*
+*
+* @author FRANCISCO JAVIER CALDER√ìN CH√ÅVEZ.
+* ALFONSO CALDER√ìN CH√ÅVEZ.
+*
+* @Instituto: INSTITUTO TECNOL√ìGICO SUPERIOR DE APATZING√ÅN.
+* UNIVERSIDAD NACIONAL AUTONOMA DE M√âXICO.
+* INSTITUTO DE INVESTIGACION EN MATEMATICAS APLICADAS Y EN SISTEMAS.
+*/
+package nreynasentero;
 
-import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.util.Scanner;
 public class NReynasEntero {
 
     public NReynasEntero() {
@@ -19,193 +20,353 @@ public class NReynasEntero {
     
     static int evaluarFuncion(int numeroEntero[])
     {
-    	int contador = 0;
-    	double qi, qj;
-    	//verifico los ataques horizontales
-    	for(int i = 0; i < numeroEntero.length-1; i++)
-    	{
-    		qi=numeroEntero[i];    		
-    		
-    		for(int j = i + 1; j < numeroEntero.length; j++)
-    		{
-    			qj=numeroEntero[j];
-    			if( qi == qj)
-    			{
-    				contador++;
-    				break;
-    			}
-    				
-    		}	
-    	}
-    	
-    	//verifica diagonales
-    	for(int i = 0; i < numeroEntero.length-1; i++)
-    	{
-    		qi=numeroEntero[i];
-    		
-    		for(int j = i + 1; j < numeroEntero.length; j++)
-    		{
-    			qj = numeroEntero[j];
-    			if(Math.abs(qi - qj) == Math.abs(i - j))
-    			{
-    				contador++;
-    				break;
-    			}
-    			
-    		}	
-    	}
-    	System.out.println("Numero de ataques: "+contador);
-    	if(contador == 0)
-    	{
-    		for(int i = 0; i < numeroEntero.length; i++)
-    		{
-    			qi = numeroEntero[i];
-    			System.out.println(qi + " - ");
-    		}
-    	}
-    	return contador;
+        int contador = 0;
+        double qi, qj;
+        //verifico los ataques horizontales
+        for(int i = 0; i < numeroEntero.length-1; i++)
+        {
+            qi=numeroEntero[i];
+
+            for(int j = i + 1; j < numeroEntero.length; j++)
+            {
+                qj=numeroEntero[j];
+                if( qi == qj)
+                {
+                    contador++;
+                    break;
+                }
+    
+            }
+     }
+    
+     //verifica diagonales
+     for(int i = 0; i < numeroEntero.length-1; i++)
+     {
+        qi=numeroEntero[i];
+
+        for(int j = i + 1; j < numeroEntero.length; j++)
+        {
+            qj = numeroEntero[j];
+            if(Math.abs(qi - qj) == Math.abs(i - j))
+            {
+                contador++;
+                break;
+            }
+        }
+     }
+     
+     
+     if(contador == 0)
+     {
+         System.out.println("N√∫mero de ataques: "+contador);
+        for(int i = 0; i < numeroEntero.length; i++)
+        {
+            qi = numeroEntero[i];
+            System.out.println(qi + " - ");
+        }
+     }
+     return contador;
     }
     
     static int generarNumero(int lsup){
-    	return (int)(Math.random()*lsup);
-    }
-    
-    static int obtenerTamanio(double lsup, double linf, int precision)
-    {
-    	return (int)Math.ceil( Math.log((lsup-linf) * Math.pow(10,precision))  / Math.log(2));
+        return (int)(Math.random()*lsup);
     }
     
     static void imprimir(int [][]m)
     {
-    	for(int i = 0; i < m.length; i++)
-    	{   
+     for(int i = 0; i < m.length; i++)
+     {
             System.out.print("Individuo "+i+": ");
-            for(int j = 0; j < m[i].length; j++)		
+            for(int j = 0; j < m[i].length; j++)
                     System.out.print (m[i][j]);
             System.out.println();
-    	}
+     }
     }
     
     static void imprimir(int []m)
     {
-    	for(int i = 0; i < m.length; i++)
-    	{   
+     for(int i = 0; i < m.length; i++)
+     {
            System.out.print(m[i]);
-    	}
+     }
     }
     
     public static void main(String [] args){
-    	Scanner leer = new Scanner(System.in);
-    	DecimalFormat digitos = new DecimalFormat("0.0000");
+     Scanner leer = new Scanner(System.in);
+     DecimalFormat digitos = new DecimalFormat("0.0000");
         
         System.out.println("Numero de reynas: ");
-    	int numeroReynas = leer.nextInt();
+     int numeroReynas = leer.nextInt();
         
         System.out.println("Numero de individuos: ");
-    	int numeroIndividuos = leer.nextInt();
+     int numeroIndividuos = leer.nextInt();
         
         System.out.println("Porcentaje de cruza: ");
         double Pc = leer.nextDouble();
         
-        System.out.println("Porcentaje de mutaciÛn: ");
+        System.out.println("Porcentaje de mutaci√≥n: ");
         double Pm = leer.nextDouble();
 
         System.out.println("Numero de generaciones: ");
         int generaciones = leer.nextInt();
         
         int lsup = numeroReynas, linf = 0;
-    	
-    	//int precision = 0;
-    	int tamIndividuo = numeroReynas;
-    	
-    	int [][] individuos = new int[numeroIndividuos][tamIndividuo];
-    	
-    	int auxi;
-    	for(int i = 0; i < numeroIndividuos; i++)
-    	{
-    		for(int j = 0; j < tamIndividuo; j++)
-    			individuos[i][j] = generarNumero(lsup);
-    	}
-    	
-    	imprimir(individuos);
-    	double arreglo [] = new double[generaciones];
-        int t = 0, mayor = 0;
-
-    	int ind = -1;
-        double min = 500.00;
-         
- /******************************************************************************************
- *              
- * EVALUACI”N DE LA FUNCI”N 
- * 
- ******************************************************************************************/
- 
-        double [] tablaDecodificacion = new double[numeroIndividuos];
-        
-        double x, y, F = 0;
-    	
-    	for(int i = 0; i < numeroIndividuos; i++)
-    	{
-    		tablaDecodificacion[i] = (double) evaluarFuncion(individuos[i]);
-                
-                if(tablaDecodificacion[i] < min)
-                {
-                    min = tablaDecodificacion[i];
-                    ind = i;
-                   
+     
+     //int precision = 0;
+     int tamIndividuo = numeroReynas;
+    
+     int [][] individuos = new int[numeroIndividuos][tamIndividuo];
+    
+     int numero;
+     
+     //GENERACI√ìN DE GENOTIPO, PERMUTACIONES DE N√öMEROS.
+     for(int i = 0; i < numeroIndividuos; i++)
+     {
+        for(int j = 0; j < tamIndividuo; )
+        {
+            numero = generarNumero(lsup);
+            boolean existe = false;
+            for(int comp = 0; comp < j; comp++)
+            {   
+                if(numero == individuos[i][comp]){
+                    existe = true; break;
                 }
-			tablaDecodificacion[i] = 50000.0 - tablaDecodificacion[i];
-    		F += tablaDecodificacion[i];
-    		
-    	}
-    	System.out.println("El mÌmino en la generaciÛn es: "+min);
+            }
+            if(!existe)
+            {
+                individuos[i][j] = numero;
+                j++;    
+            }
+                
+        }
+
+     }
+    
+     imprimir(individuos);
+     double arreglo [] = new double[generaciones];
+     int t = 0, mayor = 0;
+
+     do
+     {
+        int ind = -1;
+        double min = 500.00;
+
+    /******************************************************************************************
+    *
+    * EVALUACI√ìN DE LA FUNCI√ìN
+    *
+    ******************************************************************************************/
+
+        double [] tablaDecodificacion = new double[numeroIndividuos];
+
+        double F = 0;
+
+        for(int i = 0; i < numeroIndividuos; i++)
+        {
+            tablaDecodificacion[i] = (double) evaluarFuncion(individuos[i]);
+
+            if(tablaDecodificacion[i] < min)
+            {
+                min = tablaDecodificacion[i];
+                ind = i;
+            }
+            
+            tablaDecodificacion[i] = 50000.0 - tablaDecodificacion[i];
+            F += tablaDecodificacion[i];
+
+        }
+        System.out.print("El m√≠mino en la generaci√≥n"+t+" es: "+min+"  ---  ");
         imprimir(individuos[ind]);
+        System.out.println();
         arreglo[mayor++] = min;
-        
-        
-    	
- /******************************************************************************************
- *              
- * CALCULO DE LA APTITUD RELATIVA Y ACUMULADA
- * 
- ******************************************************************************************/
- 
+
+
+
+    /******************************************************************************************
+    *
+    * CALCULO DE LA APTITUD RELATIVA Y ACUMULADA
+    *
+    ******************************************************************************************/
+
         double aux = 0.0;
-    	for(int i = 0; i < numeroIndividuos; i++)
-    	{
-    		tablaDecodificacion[i] = Double.parseDouble(digitos.format(tablaDecodificacion[i]/F + aux)); 
-    		aux = tablaDecodificacion[i];
-    	}
-    	
-/******************************************************************************************
- *              
- * SELECCION
- * 
- ******************************************************************************************/
- 		double numeroAleatorio;
+        for(int i = 0; i < numeroIndividuos; i++)
+        {
+            tablaDecodificacion[i] = Double.parseDouble(digitos.format(tablaDecodificacion[i]/F + aux));
+            aux = tablaDecodificacion[i];
+        }
+
+    /******************************************************************************************
+    *
+    * SELECCION
+    *
+    ******************************************************************************************/
+        double numeroAleatorio;
+        int [][] individuoSeleccionado = new int[numeroIndividuos][tamIndividuo], individuoSeleccionadoCopia = new int[numeroIndividuos][tamIndividuo];
+        int cont = 0;
+        for(int i = 0; i < numeroIndividuos; i++)
+        {
+            numeroAleatorio = Math.random();
+            for(int j = 0; j < numeroIndividuos; j++)
+            {
+                if(tablaDecodificacion[j] > numeroAleatorio)
+                {
+                    individuoSeleccionado[cont] = individuos[j].clone();
+                    individuoSeleccionadoCopia[cont] = individuos[j].clone();
+                    cont++;
+                    break;
+                }
+            }
+        }
         
-    	int [][] individuoSeleccionado = new int[numeroIndividuos][tamIndividuo], individuoSeleccionadoCopia = new int[numeroIndividuos][tamIndividuo];
-    	int cont = 0;
-    	for(int i = 0; i < numeroIndividuos; i++)
-    	{
-    		numeroAleatorio = Math.random();
-    		for(int j = 0; j < numeroIndividuos; j++)
-    		{
-    			if(tablaDecodificacion[j] > numeroAleatorio)
-    			{
-                            for(int pass = 0; pass < tamIndividuo; pass++)
-                            {
-                                individuoSeleccionado[cont][pass] = individuos[j][pass];
-                                individuoSeleccionadoCopia[cont][pass] = individuos[j][pass];
-                            }
-                            cont++;
-                            break;
-    			}
-    		}
-    	}
-    	
-    	
-    	
+        //imprimir(individuoSeleccionado);
+    
+/******************************************************************************************
+*
+* CRUZA
+*
+******************************************************************************************/
+ 
+    
+     //Aplicando la cruza a los individuos seleccionados (1 x 2 y 3 x 4)
+     int [] indices = new int[numeroIndividuos];
+     cont = 0;
+     for(int i = 0; i < numeroIndividuos; i++)
+     {
+        numeroAleatorio = Math.random();
+        if(numeroAleatorio <= Pc)
+        {
+            indices[cont++] = i;
+           /* System.out.print("Ind selecccionado: "+i+"   ---  ");
+            imprimir(individuoSeleccionado[i]);
+            System.out.println(); */
+        }
+    
+     }
+        
+     int num;
+    
+     for(int i = 0, j = 0; i < cont / 2; i++, j+=2)
+     {
+        num = (int) ((Math.random()*1000) % tamIndividuo);
+       // System.out.println("Numero seleccionado: "+num);
+        //Se realiza el intercambio entre el primer individuo y el segundo
+        for(int pass = num; pass < tamIndividuo; pass++)
+        {
+            individuoSeleccionadoCopia[indices[j]][pass] = individuoSeleccionado[indices[j+1]][pass];
+            individuoSeleccionadoCopia[indices[j+1]][pass] = individuoSeleccionado[indices[j]][pass];
+        }
+        
+        
+        //MAPEO H1 
+        for(int pass = 0; pass < num; pass++)
+        {
+            boolean existe = false;
+            for(int comp = num; comp < tamIndividuo; comp++)
+            {
+                if(individuoSeleccionadoCopia[indices[j]][pass] == individuoSeleccionadoCopia[indices[j]][comp])
+                {
+                    existe = true;
+                    comp = tamIndividuo;
+                }
+            }
+            if(existe)
+            {
+                do
+                {
+                    numero = generarNumero(lsup);
+                    existe = false;
+                    for(int comp = 0; comp < tamIndividuo; comp++)
+                    {
+                        if(numero == individuoSeleccionadoCopia[indices[j]][comp]){
+                            existe = true; 
+                            comp = tamIndividuo;
+                        }
+                    }
+                    if(!existe)
+                    {
+                        individuoSeleccionadoCopia[indices[j]][pass] = numero;
+                    }
+                }while(existe);
+            }
+                
+        }
+       
+        //MAPEO H2
+        for(int pass = 0; pass < num; pass++)
+        {
+            boolean existe = false;
+            for(int comp = num; comp < tamIndividuo; comp++)
+            {
+                if(individuoSeleccionadoCopia[indices[j+1]][pass] == individuoSeleccionadoCopia[indices[j+1]][comp])
+                {
+                    existe = true;
+                    comp = tamIndividuo;
+                }
+            }
+            if(existe)
+            {
+                do
+                {
+                    numero = generarNumero(lsup);
+                    existe = false;
+                    for(int comp = 0; comp < tamIndividuo; comp++)
+                    {
+                        if(numero == individuoSeleccionadoCopia[indices[j+1]][comp]){
+                            existe = true; 
+                            comp = tamIndividuo;
+                        }
+                    }
+                    if(!existe)
+                    {
+                        individuoSeleccionadoCopia[indices[j+1]][pass] = numero;
+                    }
+                }while(existe);
+            }
+                
+        }
+          
+     }
+   /*  System.out.println("Nuevos individuos con cruza");
+     imprimir( individuoSeleccionadoCopia );*/
+     
+/******************************************************************************************
+*
+* MUTACION
+*
+******************************************************************************************/
+ 
+   /*  for(int i = 0; i < numeroIndividuos; i++)
+     {
+            for(int j = 0; j < tamIndividuo; j++)
+            {
+                numeroAleatorio = Math.random();
+     if(numeroAleatorio <= Pm)
+     {
+                    individuoSeleccionadoCopia[i][j] = (individuoSeleccionadoCopia[i][j] == true) ? false : true;
+     }
+            }
+     }
+        */
+  /******************************************************************************************
+*
+*
+* ELITISMO
+*
+******************************************************************************************/
+ 
+        individuoSeleccionadoCopia[ind] = individuos[ind].clone();
+        
+        /****************/
+        
+        individuos = individuoSeleccionadoCopia;
+        t++;
+        if(min == 0.0)
+            t = generaciones;
+        }while(t < generaciones);
+    
+        ventanaGrafica miventana = new ventanaGrafica(arreglo);
+        miventana.setSize(500,500);
+        miventana.show();
  
      }
     

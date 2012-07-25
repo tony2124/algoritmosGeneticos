@@ -63,7 +63,7 @@ public class NReynasBinario {
     			//System.out.println("Evaluando: "+i+" - "+j+" = "+qi+" - "+qj);
     		}	
     	}
-    	System.out.println("Numero de ataques: "+contador);
+    	//System.out.println("Numero de ataques: "+contador);
     	if(contador == 0)
     	{
     		for(int i = 0; i < numeroBinario.length; i++)
@@ -153,18 +153,8 @@ public class NReynasBinario {
     	boolean auxi;
     	for(int i = 0; i < numeroIndividuos; i++)
     	{
-    		for(int j = 0; j < tamIndividuo;)
-    			if(i==0){
-    				individuos[i][j] = generarBinario();
-    				j++;
-    			}
-    			else{
-    				auxi = generarBinario();
-    				if(auxi != individuos[i-1][j]){
-    					individuos[i][j]=auxi;
-    					j++;
-    				}
-    			}
+    		for(int j = 0; j < tamIndividuo; j++)
+    			individuos[i][j] = generarBinario();    			
     	}
     			
     	imprimir(individuos);
@@ -324,6 +314,8 @@ public class NReynasBinario {
         
         individuos = individuoSeleccionadoCopia;
         t++;
+        if(min == 0.0)
+        	t = generaciones;
         }while(t < generaciones);
     	
         ventanaGrafica miventana = new ventanaGrafica(arreglo);
